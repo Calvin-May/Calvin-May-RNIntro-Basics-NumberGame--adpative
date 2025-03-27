@@ -6,8 +6,14 @@ export default function StartGameScreen() {
     return (
         <View style={styles.floatingContainer}>
             <TextInput style={styles.numberInput} maxLength={2} keyboardType="number-pad" autoCorrect={false} />
-            <PrimaryButton>Reset</PrimaryButton>
-            <PrimaryButton>Confirm</PrimaryButton>
+            <View style={styles.buttonsContainer}>
+                <View style={styles.buttonContainer}>
+                    <PrimaryButton>Reset</PrimaryButton>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <PrimaryButton>Confirm</PrimaryButton>
+                </View>
+            </View>    
         </View>
     );
 }
@@ -15,9 +21,11 @@ export default function StartGameScreen() {
 const styles = StyleSheet.create(
     {
         floatingContainer: {
-            padding: 16,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 24,
             marginTop: 100,
-            marginHorizontal: 24,
+            marginHorizontal: 48,
             backgroundColor: '#4B033B',
             borderRadius: 8,
             boxShadow: '4px 4px 10px 2px',
@@ -25,18 +33,26 @@ const styles = StyleSheet.create(
             shadowOffset: { width:3, height:3},
             shadowRadius: 6,
             shadowOpacity: 0.25,
-            alignItems: 'center'
         },
         numberInput: {
-            height: 80,
-            width: '20%',
+            height: 100,
+            width: '40%',
             textAlign: 'center',
-            fontSize: 38,
+            fontSize: 50,
             borderBottomColor: '#DDB52f',
             borderBottomWidth: 3,
             color: '#FFFFFF',
-            marginVertical: 8,
-            fontWeight: 'bold'
+            marginTop: 8,
+            marginBottom: 24,
+            fontWeight: 'bold',
+        },
+        buttonsContainer: {
+            flexDirection: 'row',
+            margin: 5
+        },
+        buttonContainer: {
+            flex: 1,
+            
         }
     }
 )
