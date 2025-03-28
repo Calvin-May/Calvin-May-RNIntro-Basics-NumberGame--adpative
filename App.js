@@ -14,6 +14,7 @@ export default function App() {
   // Number provided by the user, for the app to guess
   const [gameNumber, setGameNumber] = useState();
   const [gameOver, setGameOver] = useState(true);
+  const [gameRounds, setGameRounds] = useState(0);
 
   // Hook that loads Fonts stored in */assets/fonts
   const [fontsLoaded] = useFonts({  // Array Destructuring to return variable that tells us if fonts have loaded
@@ -35,6 +36,12 @@ export default function App() {
     setGameOver(true);
   }
 
+  function startNewGameHandler() {
+    setGameNumber(null);
+    setGameOver(true);
+    setGameRounds(0)
+  }
+
   let screen = <StartGameScreen onNumberSelected={startGame} />
 
   if (gameNumber) {
@@ -42,7 +49,7 @@ export default function App() {
   }
 
   if (gameOver && gameNumber) {
-    screen = <GameOverScreen />
+    screen = <GameOverScreen numberOfRounds={gameRounds} gameNumber={gameNumber} onStartNewGame={startNewGameHandler} />
   }
 
   return (

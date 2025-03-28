@@ -32,6 +32,12 @@ export default function GameScreen({ gameNumber, onGameOver }) {
         }
     }, [currentGuess, gameNumber, onGameOver]);
 
+    //Reset Only on the first render - Ensures that the game boundaries are reset only on new game
+    useEffect(() => {
+        minBoundary = 1;
+        maxBoundary = 100;
+    },[])
+
     function nextGuessHandler(direction) {
         // Check for User Honesty - avoiding infinite loop when using generateRandomBetween()
         if (
