@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
+import Colours from './constants/colours';
 
 export default function App() {
   // Number provided by the user, for the app to guess
@@ -21,7 +22,7 @@ export default function App() {
   }
 
   return (
-    <LinearGradient colors={['#DDB52F', '#4E0329',]} style={styles.rootScreen}>
+    <LinearGradient colors={[Colours.accent500, Colours.primary900,]} style={styles.rootScreen}>
       <ImageBackground 
         source={require('./assets/images/background.png')} 
         resizeMethod='cover' 
