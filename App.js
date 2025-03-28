@@ -1,9 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ImageBackground } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useState } from 'react';
+
 import StartGameScreen from './screens/StartGameScreen';
+import GameScreen from './screens/GameScreen';
 
 export default function App() {
+  // Number provided by the user, for the app to guess
+  const [gameNumber, setGameNumber] = useState();
+
+  function numberChosenHandler(chosenNumber) {
+    setGameNumber(chosenNumber);
+  }
+
+  let screen = <StartGameScreen onNumberSelected={numberChosenHandler} />
+
+  if (gameNumber) {
+    screen = <GameScreen />
+  }
+
   return (
     <LinearGradient colors={['#DDB52F', '#4E0329',]} style={styles.rootScreen}>
       <ImageBackground 
@@ -12,7 +28,7 @@ export default function App() {
         style={styles.rootScreen}
         imageStyle={styles.backgroundStyle}
       >
-        <StartGameScreen />
+      { screen }
       </ImageBackground>
     </LinearGradient>
   );
