@@ -3,7 +3,7 @@ import Colours from "../../constants/colours";
 export default function InstructionText({children, style}) {
 
     return (
-        <Text style={styles.instructionText}>
+        <Text style={[styles.instructionText, style]}>
             {children}
         </Text>
     );
