@@ -1,5 +1,5 @@
-export const Colours = {
-    primary400: '#D4207A',
+const Colours = {
+    primary400: '#B91366',
     primary500: '#640233',
     primary800: '#4B033B',
     primary900: '#4E0329',
