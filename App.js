@@ -6,19 +6,30 @@ import { useState } from 'react';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
 import Colours from './constants/colours';
+import GameOverScreen from './screens/GameOverScreen';
 
 export default function App() {
   // Number provided by the user, for the app to guess
   const [gameNumber, setGameNumber] = useState();
+  const [gameOver, setGameOver] = useState(true);
 
-  function numberChosenHandler(chosenNumber) {
+  function startGame(chosenNumber) {
     setGameNumber(chosenNumber);
+    setGameOver(false);
   }
 
-  let screen = <StartGameScreen onNumberSelected={numberChosenHandler} />
+  function gameOverHandler() {
+    setGameOver(true);
+  }
+
+  let screen = <StartGameScreen onNumberSelected={startGame} />
 
   if (gameNumber) {
-    screen = <GameScreen gameNumber={gameNumber} />
+    screen = <GameScreen gameNumber={gameNumber} onGameOver={gameOverHandler} />
+  }
+
+  if (gameOver && gameNumber) {
+    screen = <GameOverScreen />
   }
 
   return (
