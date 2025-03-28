@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
         margin: 24,
         borderRadius: 8,
         borderColor: Colours.accent500,
-        justifyContent: 'center',
         alignItems: 'center',
     },
     numberText: {

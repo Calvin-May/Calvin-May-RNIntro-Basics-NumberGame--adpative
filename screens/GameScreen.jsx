@@ -5,6 +5,8 @@ import Title from "../components/ui/Title";
 import Colours from "../constants/colours";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 
 let minBoundary = 1;
 let maxBoundary = 100;
@@ -24,9 +26,8 @@ export default function GameScreen({ gameNumber, onGameOver }) {
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
   useEffect(() => {
-    if (gameNumber === currentGuess)
-    {
-        onGameOver();
+    if (gameNumber === currentGuess) {
+      onGameOver();
     }
   }, [currentGuess, gameNumber, onGameOver]);
 
@@ -36,9 +37,11 @@ export default function GameScreen({ gameNumber, onGameOver }) {
       (direction === "lower" && currentGuess < gameNumber) ||
       (direction === "higher" && currentGuess > gameNumber)
     ) {
-      Alert.alert("Please be honest with the phone...", "Cheating is frowned upon", [
-        { text: "Sorry!", style: "cancel" }
-      ]);
+      Alert.alert(
+        "Please be honest with the phone...",
+        "Cheating is frowned upon",
+        [{ text: "Sorry!", style: "cancel" }]
+      );
       return;
     }
 
@@ -60,44 +63,45 @@ export default function GameScreen({ gameNumber, onGameOver }) {
   }
 
   return (
-    <View style={styles.gameContainer}>
-      <Title>Opponent's Guess</Title>
-      <NumberContainer>{currentGuess}</NumberContainer>
-
-      <View>
-        <Text>Higher or Lower?</Text>
-        <View>
-          <View>
-            <PrimaryButton onPress={nextGuessHandler.bind(this, "higher")}>
-              +
-            </PrimaryButton>
-          </View>
-          <View>
-            <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-              -
-            </PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Card>
+        <Title>Opponent's Guess</Title>
+        <NumberContainer>{currentGuess}</NumberContainer>
+          <InstructionText>Higher or Lower?</InstructionText>
+        <View style={styles.centeredContainer}>
+          <View style={styles.buttonsContainer}>
+            <View style={styles.buttonContainer}>
+              <PrimaryButton onPress={nextGuessHandler.bind(this, "higher")}>
+                Higher
+              </PrimaryButton>
+            </View>
+            <View style={styles.buttonContainer}>
+              <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
+                Lower
+              </PrimaryButton>
+            </View>
           </View>
         </View>
-        <View></View>
-      </View>
+      </Card>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  gameContainer: {
+  rootContainer: {
     flex: 1,
-    padding: 24,
-    marginVertical: 100,
+    marginTop: 100,
     marginHorizontal: 48,
-    backgroundColor: Colours.primary800,
-    borderRadius: 8,
-    boxShadow: "4px 4px 10px 2px",
-    shadowColor: Colours.black,
-    shadowOffset: { width: 3, height: 3 },
-    shadowRadius: 6,
-    shadowOpacity: 0.25,
   },
-  buttonsContainer: {},
-  buttonContainer: {},
+  centeredContainer: {
+      alignItems: 'flex-end'
+    },
+    buttonsContainer: {
+      flexDirection: 'row',
+      marginTop: 10
+    },
+  buttonContainer: {
+    flex: 1,
+    paddingHorizontal: 5,
+  },
 });
