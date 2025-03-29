@@ -30,7 +30,7 @@ export default function GameScreen({ gameNumber, onGameOver }) {
 
     useEffect(() => {
         if (gameNumber === currentGuess) {
-            onGameOver();
+            onGameOver(gameRounds.length);
         }
     }, [currentGuess, gameNumber, onGameOver]);
 
@@ -98,6 +98,7 @@ export default function GameScreen({ gameNumber, onGameOver }) {
             <View style={styles.listContainer}>
                 {/* {gameRounds.map(gameRound => <Text key={gameRound}>{gameRound}</Text>)} */}
                 <FlatList
+                    showsVerticalScrollIndicator={false}
                     data={gameRounds}
                     key={(item) => item}
                     renderItem={(data) => (
