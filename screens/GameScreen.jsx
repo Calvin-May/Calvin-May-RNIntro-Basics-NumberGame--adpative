@@ -95,7 +95,7 @@ export default function GameScreen({ gameNumber, onGameOver }) {
                     </View>
                 </View>
             </Card>
-            <View>
+            <View style={styles.listContainer}>
                 {/* {gameRounds.map(gameRound => <Text key={gameRound}>{gameRound}</Text>)} */}
                 <FlatList
                     data={gameRounds}
@@ -129,5 +129,9 @@ const styles = StyleSheet.create({
     InstructionText: {
         borderBottomWidth: 1,
         borderBottomColor: Colours.accent500
+    },
+    listContainer: {
+        flex: 1,
+        padding: 10
     }
 });
