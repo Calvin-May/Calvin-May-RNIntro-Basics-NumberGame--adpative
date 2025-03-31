@@ -7,11 +7,10 @@ This simple app allows the User to select a number between 1 - 100. Once a valid
 This update to the previous Number Game App allows the user interface to adapt to different platforms and screen sizes of devices that the app could be installed on.
 
 ### Through the development of this app we will explore:
-1. Additional Core Components provided by React Native
-2. More complex styling and and layouts, including cascading and global styles
-3. Reusable components and styling
-4. Programatically handling multiple screens
-5. Basic user input validation
+1. Cross Platform specific code and development
+2. Adaptive and Responsive UIs in response to device sizes
+3. Managing Screen Orientation
+4. Adaptive Components
 
 ---
 ### Possible Features to Add
