@@ -10,12 +10,23 @@ import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstructionText";
 import RoundLogItem from "../components/game/RoundLogItem";
 
-let minBoundary = 1;
-let maxBoundary = 100;
+// Non refreshing variables, when these variables are changed, they are not reset to these values upon re-renders
+//-this means we can keep track of their values and updated them throughout the game regardless of how many times the component is re-rendered
+let minBoundary = 1;    // Minimum numeric value that the Phone is allowed to guess
+let maxBoundary = 100;  // Maximum numeric value that the Phone is allowed to guess
 
+/**
+ * This function generates and returns a random number between a specific minimum and maximum number. A specific number can be excluded from 
+ * the guess using the exclude parameter, if this number is guessed recursion is used until a valid number is found.
+ * @param {number} max 
+ * @param {number} exclude 
+ * @returns 
+ */
 function generateRandomBetween(min, max, exclude) {
+    // Find a random number between the minimum and maximum
     const randomNumber = Math.floor(Math.random() * (max - min)) + min;
 
+    // Check if the number is excluded, if so recall the function to find a new number, otherwise return the random number
     if (randomNumber === exclude) {
         return generateRandomBetween(minBoundary, maxBoundary, exclude);
     } else {
@@ -24,22 +35,32 @@ function generateRandomBetween(min, max, exclude) {
 }
 
 export default function GameScreen({ gameNumber, onGameOver }) {
-    const initialGuess = generateRandomBetween(1, 100, gameNumber);
-    const [currentGuess, setCurrentGuess] = useState(initialGuess);
-    const [gameRounds, setGameRounds] = useState([initialGuess]);
 
+    const initialGuess = generateRandomBetween(1, 100, gameNumber); // Holds the first guess of the game
+    const [currentGuess, setCurrentGuess] = useState(initialGuess); // State to track the new guess for each round, until game over
+    const [gameRounds, setGameRounds] = useState([initialGuess]);   // State to track the number of rounds that occur until game over
+
+    // This Function will run on each render where a new guess has been made or a new round has started, or the game has ended
     useEffect(() => {
+        // If the new guess matches the game number, end the game
         if (gameNumber === currentGuess) {
             onGameOver(gameRounds.length);
         }
     }, [currentGuess, gameNumber, onGameOver]);
 
-    //Reset Only on the first render - Ensures that the game boundaries are reset only on new game
+    //Reset Only on the first render - Ensures that the game min/max boundaries are reset only on new game, since we change these values on each new round
     useEffect(() => {
         minBoundary = 1;
         maxBoundary = 100;
     },[])
 
+    /**
+     * This Function is called after each guess made by the computer. The direction variable is used to determine if the computer's next guess must be higher
+     * or lower than the previous guess. Based on the direction, the computer will have a new minimum and maximum values in which the game number resides in,
+     * ensuring that the next randomly generated number is closer to the game number.
+     * @param {string} direction 
+     * @returns 
+     */
     function nextGuessHandler(direction) {
         // Check for User Honesty - avoiding infinite loop when using generateRandomBetween()
         if (
@@ -60,7 +81,6 @@ export default function GameScreen({ gameNumber, onGameOver }) {
         } else {
             minBoundary = currentGuess + 1;
         }
-        console.log(`Min: ${minBoundary} - Max: ${maxBoundary}`);
         const newGuess = generateRandomBetween(
             minBoundary,
             maxBoundary,
@@ -72,6 +92,7 @@ export default function GameScreen({ gameNumber, onGameOver }) {
         setGameRounds((prevGameRounds) => [newGuess, ...prevGameRounds]);
     }
 
+    // Keep Track of the Game Rounds to display to the user, and for use in the Game Over Screen
     const gameRoundsListLength = gameRounds.length;
 
     return (

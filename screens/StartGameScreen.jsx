@@ -6,18 +6,34 @@ import Title from "../components/ui/Title";
 import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstructionText";
 
+
 export default function StartGameScreen({onNumberSelected}) {
 
-    const [enteredNumber, setEnteredNumber] = useState('');
+    const [enteredNumber, setEnteredNumber] = useState(''); // Holds the state of the Game Number that was entered by the user, initially set to an String.empty
 
+    /**
+     * Event Handler that is used by a TextInput to track keystrokes and update the enteredNumber State
+     * @param {string} inputText 
+     */
     function numberInputHandler(inputText) {
         setEnteredNumber(inputText);
     }
 
+    /**
+     * Function to quickly return the enteredNumber state to an empty string
+     */
     function resetInputHandler() {
         setEnteredNumber('');
     }
 
+    /**
+     *  
+     * @returns Function for input validation to confirm the users input as a valid value to be used in the Game.
+     * This function ensures that the user input is a valid integer between 1 and 100. It will display an Alert message
+     * to the user if the input does not pass validation. Otherwise, it utilizes the onNumberSelected function passed as a prop
+     * from App.js, begining the game.
+     * 
+     */
     function confirmInputHandler() {
         // Perform Validation on the Input
         //-Must be a number Greater than 0, Less and 100
@@ -46,7 +62,7 @@ export default function StartGameScreen({onNumberSelected}) {
                 maxLength={2} 
                 keyboardType="number-pad" 
                 autoCorrect={false} 
-                value={enteredNumber}
+                value={enteredNumber /*Provides two-way binding by ensuring the value of the textinput matches our state */}
                 onChangeText={numberInputHandler}
                 />
                 <View style={styles.buttonsContainer}>
