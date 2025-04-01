@@ -10,7 +10,6 @@ export default function Card({children}) {
 }
 
 const deviceWidth = Dimensions.get('window').width;
-const deviceHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     floatingContainer: {

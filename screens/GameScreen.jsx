@@ -138,7 +138,7 @@ const deviceHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
-        marginTop: deviceWidth < 380 ? 50 : 100,
+        marginTop: deviceHeight < 380 ? 40 : 100,
         marginHorizontal: 48,
     },
     centeredContainer: {

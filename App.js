@@ -68,23 +68,22 @@ export default function App() {
   if (gameOver && gameNumber) {
     screen = <GameOverScreen numberOfRounds={gameRounds} gameNumber={gameNumber} onStartNewGame={startNewGameHandler} />
   }
-
   return (
-    <LinearGradient colors={[Colours.accent500, Colours.primary900,]} style={styles.rootScreen}>
-      <ImageBackground 
-        source={require('./assets/images/background.png')} 
-        resizeMethod='cover' 
-        style={styles.rootScreen}
-        imageStyle={styles.backgroundStyle}
-      >
-      {/* Automatically provide padding to render content within the safe boundaries of IOS devices (IOS ONLY)  */}
-      <SafeAreaView style={styles.rootScreen}>
-        { // Load whichever JSX component currently assigned to the Screen Variable 
-          screen  
-        }
-      </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <LinearGradient colors={[Colours.accent500, Colours.primary900,]} style={styles.rootScreen}>
+          <ImageBackground 
+            source={require('./assets/images/background.png')} 
+            resizeMethod='cover' 
+            style={styles.rootScreen}
+            imageStyle={styles.backgroundStyle}
+          >
+          {/* Automatically provide padding to render content within the safe boundaries of IOS devices (IOS ONLY)  */}
+          <SafeAreaView style={styles.rootScreen}>
+            { // Load whichever JSX component currently assigned to the Screen Variable 
+              screen  
+            }
+          </SafeAreaView>
+          </ImageBackground>
+        </LinearGradient>
   );
 }
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Alert, Text, Dimensions } from "react-native";
+import { StyleSheet, TextInput, View, Alert, Text, Dimensions, useWindowDimensions, ScrollView, KeyboardAvoidingView } from "react-native";
 import { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Colours from "../constants/colours";
@@ -10,6 +10,9 @@ import InstructionText from "../components/ui/InstructionText";
 export default function StartGameScreen({onNumberSelected}) {
 
     const [enteredNumber, setEnteredNumber] = useState(''); // Holds the state of the Game Number that was entered by the user, initially set to an String.empty
+    
+    // In order to make UI responsive, we need to set up a dynamic Width and Height within the component
+    const {width, height} = useWindowDimensions();
 
     /**
      * Event Handler that is used by a TextInput to track keystrokes and update the enteredNumber State
@@ -52,8 +55,12 @@ export default function StartGameScreen({onNumberSelected}) {
         onNumberSelected(chosenNumber);
     }
 
+    const MarginTopDistance =  height < 380 ? 30 : 100;
+
     return (
-        <View style={styles.rootContainer}>
+        <ScrollView style={styles.screen}>
+            <KeyboardAvoidingView style={styles.screen} behavior="position">
+            <View style={[styles.rootContainer, {marginTop: MarginTopDistance}]}>
             <Title>Guess My Number</Title>
             <Card>
                 <InstructionText style={styles.instructionText}>Enter a Number</InstructionText>
@@ -75,6 +82,8 @@ export default function StartGameScreen({onNumberSelected}) {
                 </View>    
             </Card>
         </View>
+            </KeyboardAvoidingView>
+        </ScrollView>    
     );
 }
 
@@ -82,6 +91,9 @@ const DeviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create(
     {
+        screen: {
+            flex: 1,
+        },
         rootContainer: {
             flex: 1,
             marginTop: 100,
