@@ -1,4 +1,4 @@
-import { Alert, FlatList, StyleSheet, Text, View } from "react-native";
+import { Alert, FlatList, StyleSheet, Text, View, Dimensions } from "react-native";
 import { useState, useEffect } from "react";
 import { Ionicons } from '@expo/vector-icons'
 
@@ -131,10 +131,14 @@ export default function GameScreen({ gameNumber, onGameOver }) {
     );
 }
 
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
+
+
 const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
-        marginTop: 100,
+        marginTop: deviceWidth < 380 ? 50 : 100,
         marginHorizontal: 48,
     },
     centeredContainer: {
@@ -150,7 +154,8 @@ const styles = StyleSheet.create({
     },
     InstructionText: {
         borderBottomWidth: 1,
-        borderBottomColor: Colours.accent500
+        borderBottomColor: Colours.accent500,
+        textAlign: 'center',
     },
     listContainer: {
         flex: 1,

@@ -1,6 +1,6 @@
 ﻿# RNIntro-Basics-NumberGame
 
-This simple app allows the User to select a number between 1 - 100. Once a valid number is provided, the app will guess the number. After each guess the User can tell the app if the guess was higher or lower than the guess provided by the app. The app will continue to guess untill the provided number matches the one provided by the user. When the correct number is guessed, a game over screen is displayed, showing the number of guesses made and allowing the user the start a new game.
+This simple app allows the User to select a number between 1 - 100. Once a valid number is provided, the app will guess the number. After each guess the User can tell the app if the guess was higher or lower than the guess provided by the app. The app will continue to guess until the provided number matches the one provided by the user. When the correct number is guessed, a game over screen is displayed, showing the number of guesses made and allowing the user the start a new game.
 
 # Adaptive
 

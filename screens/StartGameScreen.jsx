@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Alert, Text } from "react-native";
+import { StyleSheet, TextInput, View, Alert, Text, Dimensions } from "react-native";
 import { useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Colours from "../constants/colours";
@@ -78,6 +78,8 @@ export default function StartGameScreen({onNumberSelected}) {
     );
 }
 
+const DeviceWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create(
     {
         rootContainer: {
@@ -89,7 +91,7 @@ const styles = StyleSheet.create(
             height: 100,
             width: '40%',
             textAlign: 'center',
-            fontSize: 50,
+            fontSize: DeviceWidth < 380 ? 38 : 50,
             borderBottomColor: Colours.accent500,
             borderBottomWidth: 3,
             color: Colours.white,

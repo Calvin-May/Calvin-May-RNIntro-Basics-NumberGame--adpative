@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import Colours from "../../constants/colours";
 
 export default function RoundLogItem({roundNumber = 3, guess = 3}) {
@@ -10,14 +10,17 @@ export default function RoundLogItem({roundNumber = 3, guess = 3}) {
     )
 }
 
+const DeviceWidth =  Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
     listItem: {
         borderColor: Colours.primary800,
         borderWidth: 2,
         borderRadius: 40,
-        padding: 12,
-        marginHorizontal: 8,
-        marginVertical: 15,
+        paddingHorizontal: DeviceWidth < 380 ? 6 : 12,
+        paddingVertical: DeviceWidth < 380 ? 8 : 12,
+        marginHorizontal: DeviceWidth < 380 ? 2 : 8,
+        marginVertical: DeviceWidth < 380 ? 6 : 15,
         backgroundColor: Colours.accent500,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -30,6 +33,6 @@ const styles = StyleSheet.create({
     },
     itemText: {
         fontFamily: 'open-sans-bold',
-        fontSize: 20
+        fontSize: DeviceWidth < 380 ? 18 : 20
     }
 });
