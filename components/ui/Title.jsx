@@ -1,4 +1,4 @@
-import { Text, StyleSheet, Dimensions } from "react-native";
+import { Text, StyleSheet, Dimensions, Platform } from "react-native";
 import Colours from "../../constants/colours";
 
 
@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: DeviceWidth < 380 ? 4 : 12,
         marginBottom: 15,
-        borderBottomWidth: 2,
+        //borderBottomWidth: Platform.OS === "android" ? 2 : null, // Only show Border on Android Platform
+        //borderBottomWidth: Platform.select({ios: 0, android: 2}),   // Use Specific values depending on the Platform
         borderBottomColor: Colours.white,
     }
 });
