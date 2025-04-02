@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         //borderBottomWidth: Platform.OS === "android" ? 2 : null, // Only show Border on Android Platform
         //borderBottomWidth: Platform.select({ios: 0, android: 2}),   // Use Specific values depending on the Platform
+        borderBottomWidth: 0,
         borderBottomColor: Colours.white,
     }
 });
