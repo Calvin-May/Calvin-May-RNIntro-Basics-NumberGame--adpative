@@ -69,6 +69,8 @@ export default function App() {
     screen = <GameOverScreen numberOfRounds={gameRounds} gameNumber={gameNumber} onStartNewGame={startNewGameHandler} />
   }
   return (
+    <>
+        <StatusBar style='dark' />
         <LinearGradient colors={[Colours.accent500, Colours.primary900,]} style={styles.rootScreen}>
           <ImageBackground 
             source={require('./assets/images/background.png')} 
@@ -84,6 +86,7 @@ export default function App() {
           </SafeAreaView>
           </ImageBackground>
         </LinearGradient>
+    </>
   );
 }
 const styles = StyleSheet.create({
